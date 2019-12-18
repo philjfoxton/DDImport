@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pmf-obpexporter.service
+  namespace: pfm-stage
+  labels:
+    env: stage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: obp
+  template:
+    metadata:
+      labels:
+        app: obp
+    spec:
+      containers:
+      - name: obp
+        image: 063523468743.dkr.ecr.us-east-2.amazonaws.com/pmf/obpexporter.service:latest
+        ports:
+        - containerPort: 80
+        env:
+          - name: ASPNETCORE_URLS
+            value: http://+:80
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Development
+          - name: PFM_SERVICE_NAME
+            value: obpexporter
