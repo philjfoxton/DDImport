@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-proxy
+  labels:
+    env: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name:  nginx-proxy
+        image: 063523468743.dkr.ecr.us-east-2.amazonaws.com/pfm-custom-nginx:latest
+        ports:
+        - containerPort: 80

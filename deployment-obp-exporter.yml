@@ -1,25 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pmf-obpexporter.service
-  namespace: pfm-stage
+  name: obp-exporter-deployment
+ # namespace: pfm-stage
   labels:
-    env: stage
+    app: obp-exporter
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: obp
+      app: obp-exporter
   template:
     metadata:
       labels:
-        app: obp
+        app: obp-exporter
     spec:
       containers:
       - name: obp
         image: 063523468743.dkr.ecr.us-east-2.amazonaws.com/pmf/obpexporter.service:latest
         ports:
-        - containerPort: 80
+        - containerPort: 80 
+        livenessProbe:
+          httpGet:
+            path: /obpexporter/hangfire
+            port: 80
+          initialDelaySeconds: 4
         env:
           - name: ASPNETCORE_URLS
             value: http://+:80
