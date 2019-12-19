@@ -1,0 +1,16 @@
+---
+- name: create nginx-pod
+  k8s:
+    state: present
+    definition: "{{ lookup('template', 'deployment-nginx.yaml.j2') }}"
+    namespace: "{{ ns_name }}"
+##    src: redis-deploy.yaml 
+###    namespace: "{{ ns_name }}"
+##  register: show_ns_k
+
+- name: create nginx-svc
+  k8s:
+    state: present
+    definition: "{{ lookup('template', 'svc-nginx.yaml.j2') }}"
+    namespace: "{{ ns_name }}"
+  register: show_ns_k
