@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: obp-mock
-        image: 063523468743.dkr.ecr.us-east-2.amazonaws.com/pfm/obmpock.api:latest
+        image: 063523468743.dkr.ecr.us-east-2.amazonaws.com/pfm/obmpock.api:{{ tag_id }}
         ports:
         - containerPort: 80 
         livenessProbe:

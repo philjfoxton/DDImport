@@ -3,6 +3,7 @@
   hosts: localhost
   vars:
     ns_name: dev-pfm
+    tag_id: latest
   roles:
     - { role: ns-create }
     - { role: svc-obp-exporter }

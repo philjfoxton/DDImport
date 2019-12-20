@@ -16,6 +16,14 @@ spec:
     spec:
       containers:
       - name:  nginx-proxy
-        image: 063523468743.dkr.ecr.us-east-2.amazonaws.com/pfm-custom-nginx:latest
+        image: nginx
         ports:
         - containerPort: 80
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d
+          name: configmap-volume
+
+      volumes:
+      - name: configmap-volume
+        configMap:
+          name: nginx-proxy-pod-config-{{ ns_name }}

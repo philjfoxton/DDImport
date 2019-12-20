@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: obp
-        image: 063523468743.dkr.ecr.us-east-2.amazonaws.com/pmf/obpexporter.service:latest
+        image: 063523468743.dkr.ecr.us-east-2.amazonaws.com/pmf/obpexporter.service:{{ tag_id }}
         ports:
         - containerPort: 80 
         livenessProbe:
