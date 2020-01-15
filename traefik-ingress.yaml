@@ -22,7 +22,11 @@ spec:
         backend:
           serviceName: connections-svc-dev-pfm
           servicePort: 80
-      - path: /obpexporter 
+      - path: /connections
+        backend:
+          serviceName: connections-svc-dev-pfm
+          servicePort: 80    
+      - path: /obpexporter
         backend:
           serviceName: obp-exporter-svc-dev-pfm
           servicePort: 80     
@@ -50,7 +54,7 @@ spec:
         backend:
           serviceName: transactions-svc-dev-pfm
           servicePort: 80   
-      - path: /v1/transactions
+      - path: /transactions
         backend:
           serviceName: transactions-svc-dev-pfm
           servicePort: 80
