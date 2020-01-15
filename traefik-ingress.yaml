@@ -6,6 +6,10 @@ metadata:
     kubernetes.io/ingress.class: traefik
     traefik.frontend.rule.type: PathPrefix
 spec:
+  headers:
+    customResponseHeaders:
+      X-iOS-Min-Version: "1"
+      X-Android-Min-Version: "1"
   rules:
   - http:
       paths:
@@ -52,4 +56,4 @@ spec:
       - path: /v1/transactions
         backend:
           serviceName: transactions-svc-dev-pfm
-          servicePort: 80            
+          servicePort: 80
