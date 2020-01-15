@@ -45,3 +45,11 @@ spec:
         backend:
           serviceName: obp-mock-svc-dev-pfm
           servicePort: 80   
+      - path: /v1/transactions
+        backend:
+          serviceName: transactions-svc-dev-pfm
+          servicePort: 80   
+      - path: /v1/transactions
+        backend:
+          serviceName: transactions-svc-dev-pfm
+          servicePort: 80            
