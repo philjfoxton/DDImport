@@ -1,0 +1,10 @@
+---
+- name: Create a new ns
+  hosts: localhost
+  vars:
+    ns_name: dev-pfm
+    tag_id: latest
+  roles:
+    - { role: svc-configs }}
+  vars_files:
+  - vars_dev.yml
