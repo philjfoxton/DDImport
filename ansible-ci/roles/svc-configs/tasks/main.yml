@@ -1,5 +1,5 @@
 ---
-- name: create api-configmap
+- name: create svc-vars
   k8s:
     state: present
     definition: "{{ lookup('template', 'svc-vars-{{ ns_name }}.yaml.j2') }}"
