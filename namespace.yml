@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: pfm-stage
-  labels:
-    env: pfm-stage
