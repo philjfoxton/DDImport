@@ -56,9 +56,11 @@ data:
                           message: '^\d+\.\d+\.\d+\.\d+ '
                   - equals:
                       fileset.name: access
-      - add_cloud_metadata:
-      - add_kubernetes_metadata:
-      - add_docker_metadata:
+       #  - add_cloud_metadata:
+    - add_kubernetes_metadata:
+#  - add_docker_metadata:
+    - drop_fields:
+        fields: ["_type", "_score", "agent.ephemeral_id", "agent.hostname", "agent.id", "agent.type", "agent.version", "ecs.version", "host.name", "input.type"]
 
     output.elasticsearch:
       hosts: ['${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
