@@ -63,6 +63,18 @@ spec:
         backend:
           serviceName: transactions-svc-dev-pfm
           servicePort: 80   
+      - path: /v1/banks
+        backend:
+          serviceName: transactions-svc-dev-pfm
+          servicePort: 80   
+      - path: /v1/accounts
+        backend:
+          serviceName: transactions-svc-dev-pfm
+          servicePort: 80   
+      - path: /v1/tokens
+        backend:
+          serviceName: transactions-svc-dev-pfm
+          servicePort: 80   
       - path: /transactions
         backend:
           serviceName: transactions-svc-dev-pfm
