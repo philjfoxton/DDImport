@@ -94,5 +94,4 @@ spec:
       - path: /v1/statements 
         backend: 
           serviceName: statements-api
-          servicePort: 80
-        
+          servicePort: 80 
