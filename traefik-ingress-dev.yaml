@@ -87,12 +87,12 @@ spec:
         backend:
           serviceName: goals-api
           servicePort: 80 
-      - backend:
-        path: /statements
+      - path: /statements
+        backend:
           serviceName: statements-api
           servicePort: 80
-      - backend:
-        path: /v1/statements
+      - path: /v1/statements 
+        backend: 
           serviceName: statements-api
           servicePort: 80
         
