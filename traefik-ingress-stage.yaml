@@ -75,3 +75,24 @@ spec:
         backend:
           serviceName: transactions-svc-stage
           servicePort: 80   
+      - path: /transactions
+        backend:
+          serviceName: transactions-api
+          servicePort: 80
+      - path: /goals
+        backend:
+          serviceName: goals-api
+          servicePort: 80
+      - path: /v1/goals
+        backend:
+          serviceName: goals-api
+          servicePort: 80 
+      - path: /statements
+        backend:
+          serviceName: statements-api
+          servicePort: 80
+      - path: /v1/statements 
+        backend: 
+          serviceName: statements-api
+          servicePort: 80
+        
