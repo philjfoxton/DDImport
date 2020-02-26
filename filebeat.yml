@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  namespace: dev-pfm
+  namespace: kube-system
   name: filebeat-config
   labels:
     app: filebeat
@@ -77,7 +77,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  namespace: dev-pfm
+  namespace: kube-system
   name: filebeat-indice-lifecycle
   labels:
     app: filebeat
@@ -107,7 +107,7 @@ data:
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
-  namespace: dev-pfm
+  namespace: kube-system
   name: filebeat
   labels:
     app: filebeat
@@ -190,7 +190,7 @@ spec:
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  namespace: dev-pfm
+  namespace: kube-system
   name: filebeat
 subjects:
 - kind: ServiceAccount
@@ -221,7 +221,7 @@ rules:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  namespace: dev-pfm
+  namespace: kube-system
   name: filebeat
   labels:
     app: filebeat
