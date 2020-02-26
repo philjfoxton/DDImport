@@ -1,0 +1,36 @@
+[local]
+localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python
+
+[platform-bastion]
+10.10.100.54
+#builder-ssh-gateway.piplatform-internal.io
+
+[platform-Stage]
+api-stage-1.piplatform-internal.io ansible_user=ops
+
+[platform-Stage:vars]
+ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q mgmt@10.10.100.54 -i ~/.ssh/mgmt_file"'
+
+
+[platform-Production]
+api-prod-2.piplatform-internal.io ansible_user=gitlab-runner
+
+[platform-Production:vars]
+ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q mgmt@10.10.100.54 -i ~/.ssh/mgmt_file"'
+
+[platform-Development]
+api-dev-1.piplatform-internal.io  ansible_user=gitlab-runner
+
+[platform-Development:vars]
+ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q mgmt@10.10.100.54 -i ~/.ssh/mgmt_file"'
+
+[elasticsearch]
+ES_IP 
+
+[graylog]
+NEW_GRAYLOG_IP ansible_user=ops
+
+[kibana]
+KIBANA_IP ansible_user=ubuntu
+
+

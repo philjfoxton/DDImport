@@ -1,0 +1,10 @@
+---
+- hosts: elasticsearch
+  become: true
+  vars:
+   region: eu-west-1
+   ec2_tagname: elasticsearchtag
+   ec2_tagvalue: dev
+   master: "true" 
+  roles:
+  - {role: elasticsearch-cluster}

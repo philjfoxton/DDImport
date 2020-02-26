@@ -1,0 +1,51 @@
+---
+    - name: Update and upgrade apt packages
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    - name: Download and install the public signing key
+      shell: wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+
+    - name: Install base packages
+      apt: name={{ packages }} state=present
+      vars:
+        packages:
+          - default-jdk
+          - apt-transport-https
+
+    - name: Save the deb 
+      shell: |
+         echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+         apt-get update &&  apt-get install elasticsearch
+ 
+    - name: fetch hosts ip
+      shell: hostname -i 
+      register: ip
+    
+    - name: config template
+      template:
+        src: elasticsearch.j2
+        dest: /etc/elasticsearch/elasticsearch.yml
+
+    - name: Folder permissions change
+      file: path=/opt/elasticsearch owner=elasticsearch group=elasticsearch mode=0755 state=directory recurse=yes
+
+    - name: Enable and start ElasticSearch service
+      shell: |
+         ./elasticsearch-plugin install  discovery-ec2 -b
+         sudo /bin/systemctl daemon-reload
+         sudo /bin/systemctl enable elasticsearch.service
+         sudo systemctl stop elasticsearch.service
+         sudo systemctl start elasticsearch.service
+      args:
+        chdir: /usr/share/elasticsearch/bin
+
+    - pause: 
+        seconds: 10
+
+    - name: check if config is correct 
+      shell: curl -XGET http://{{ip.stdout}}:9200/_cluster/health?pretty
+
+
+

@@ -1,0 +1,12 @@
+cluster.name: escluster
+
+node.master: {{master}}
+node.data: true
+node.ingest: false
+
+path.logs: /var/log/elasticsearch
+path.data: /opt/elasticsearch
+discovery.ec2.endpoint: ec2.{{region}}.amazonaws.com
+discovery.ec2.tag.{{ec2_tagname}}: {{ec2_tagvalue}}
+discovery.zen.hosts_provider: ec2
+network.host: {{ ip.stdout }}
