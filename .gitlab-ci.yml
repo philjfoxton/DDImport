@@ -1,0 +1,23 @@
+stages: 
+  - deploy_dev_ing
+  - deploy_stage_ing
+image: registry.gitlab.com/dashdevs/pfm/infrastructure/docker-images/gitlab-ci:build-deploy  
+.template: &ireland-runner
+  tags: 
+    - docker_runner_ireland
+'Deploy dev Ingress':
+  only:
+    - master
+  stage: deploy_dev_ing
+  script:
+    - aws eks --region eu-west-1 update-kubeconfig --name pfm-eks-stage
+    - kubectl apply -f traefik-ingress-dev.yaml -n dev
+  <<: *ireland-runner
+'Deploy stage Ingress':
+  only:
+    - master
+  stage: deploy_stage_ing
+  script:
+    - aws eks --region eu-west-1 update-kubeconfig --name pfm-eks-stage
+    - kubectl apply -f traefik-ingress-stage.yaml -n stage
+  <<: *ireland-runner  
