@@ -17,7 +17,9 @@ image: registry.gitlab.com/dashdevs/pfm/infrastructure/docker-images/gitlab-ci:b
   only:
     - master
   stage: deploy_stage_ing
+  when: manual
   script:
     - aws eks --region eu-west-1 update-kubeconfig --name pfm-eks-stage
     - kubectl apply -f traefik-ingress-stage.yaml -n stage
   <<: *ireland-runner  
+  
