@@ -104,6 +104,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
     traefik.frontend.rule.type: PathPrefix
     ingress.kubernetes.io/custom-response-headers: "X-Android-Min-Version:1 || X-iOS-Min-Version:1"
+    external-dns.alpha.kubernetes.io/hostname: private-eks-dev-elb.sigmabh.io
 spec:
   rules:
   - host: private-eks-dev-elb.sigmabh.io
